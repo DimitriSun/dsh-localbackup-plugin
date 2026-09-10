@@ -1,6 +1,6 @@
 {
   "name": "dsh-backup-plugin",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Personal dsh backup plugin: one-click uncompressed tar snapshot of the DSH home, keeping the last N versions. v0.2 adds frontend settings (backup dir + keep) in the Settings menu.",
   "private": true,
   "type": "module",
