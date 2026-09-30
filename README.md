@@ -22,6 +22,24 @@ npx @deepseek-ai/dsh plugin --profile web add ~\dsh-backup-plugin
 
 Restart dsh — done.
 
+## Compatibility
+
+dsh 0.2.0 and later check a plugin's DSH peer range before installing or activating it, so this plugin declares what it supports and dsh refuses it instead of failing halfway:
+
+```json
+"peerDependencies": { "@deepseek-ai/dsh": ">=0.1.5-rc.2 <0.3.0-0" }
+```
+
+The upper bound is `<0.3.0-0` rather than `<0.3.0` on purpose: dsh matches the range with prereleases included, and `<0.3.0` would still admit `0.3.0-rc.1`.
+
+Verified running on 0.1.5-rc.2 and 0.2.0-rc.2. If dsh reports the plugin as incompatible, update it instead of granting a version exemption — the harness may have changed underneath it.
+
+**Desktop:** the desktop application runs its own `desktop` profile, so a plugin installed into `web` is not loaded there. Open Desktop once, quit it completely, then run:
+
+```sh
+npx @deepseek-ai/dsh plugin --profile desktop add ~\dsh-backup-plugin
+```
+
 ## Uninstall
 
 If a dsh update goes sideways and this plugin ends up keeping dsh from starting, remove it with:

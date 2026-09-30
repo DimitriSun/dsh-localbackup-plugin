@@ -22,6 +22,24 @@ npx @deepseek-ai/dsh plugin --profile web add ~\dsh-backup-plugin
 
 重启即可
 
+## 版本兼容
+
+dsh 0.2.0 起会在安装/启用插件前校验它对 dsh 版本的要求，所以本插件声明了自己支持的版本，让 dsh 直接拒绝加载，而不是跑到一半出错：
+
+```json
+"peerDependencies": { "@deepseek-ai/dsh": ">=0.1.5-rc.2 <0.3.0-0" }
+```
+
+上界写成 `<0.3.0-0` 而不是 `<0.3.0`：dsh 匹配范围时把预发布版也算在内，`<0.3.0` 会连 `0.3.0-rc.1` 一起放进来。
+
+已在 0.1.5-rc.2 和 0.2.0-rc.2 上实测可用。如果 dsh 提示不兼容，请更新插件，不要随手给版本豁免——那是把崩溃和数据损坏的风险自己扛下来。
+
+**桌面版**用的是独立的 `desktop` 配置档，装在 `web` 档里的插件在桌面版里不会加载。先把桌面版打开一次，然后完全退出，再执行：
+
+```sh
+npx @deepseek-ai/dsh plugin --profile desktop add ~\dsh-backup-plugin
+```
+
 ## 卸载
 
 如果dsh唐突更新，本插件导致dsh无法启动，运行以下命令卸载：
