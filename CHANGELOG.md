@@ -13,20 +13,20 @@ English | [简体中文](#中文)
 - The run result reports `rounds`, `liveCopies`, `skipped`, `skippedCount` and `unstable`; `GET /dsh-backup/state` also reports `lastError`.
 - Added `test/archive.test.mjs` covering the failure classification, the member split, and both real-world cases.
 
-## v0.2.2 — 2026-10-23
+## v0.2.2 — 2026-09-30
 
 **Declared the supported DSH versions.**
 
 - `peerDependencies` on `@deepseek-ai/dsh` (`>=0.1.5-rc.2 <0.3.0-0`) and the same range under `engines.dsh`, so dsh 0.2.0 and later refuse the plugin instead of activating it against a harness it was not built for. The `<0.3.0-0` upper bound is deliberate: dsh matches ranges with prereleases included, so `<0.3.0` would still admit `0.3.0-rc.1`.
 
-## v0.2.1 — 2026-10-18
+## v0.2.1 — 2026-09-10
 
 **Client robustness against shell boot and HMR aborts.**
 
 - Every request uses a manual `AbortController` with bounded retry; HTTP errors are never retried.
 - The long-running backup is confirmed by polling `/dsh-backup/state` instead of trusting a single POST, with a 30-minute budget.
 
-## v0.2.0 — 2026-09-20
+## v0.2.0 — 2026-09-08
 
 **Frontend settings.**
 
@@ -48,20 +48,20 @@ English | [简体中文](#中文)
 - 结果新增 `rounds`、`liveCopies`、`skipped`、`skippedCount`、`unstable`；`GET /dsh-backup/state` 新增 `lastError`。
 - 新增 `test/archive.test.mjs`，覆盖失败分类、成员拆分以及上面两种真实场景。
 
-## v0.2.2 — 2026-10-23
+## v0.2.2 — 2026-09-30
 
 **声明支持的 DSH 版本。**
 
 - 在 `peerDependencies` 与 `engines.dsh` 里声明 `>=0.1.5-rc.2 <0.3.0-0`：dsh 0.2.0 起会直接拒绝加载不匹配的插件，而不是让它跑在不认识的 harness 上。上界写 `<0.3.0-0` 而不是 `<0.3.0` 是故意的：dsh 匹配范围时把预发布版也算在内，`<0.3.0` 会连 `0.3.0-rc.1` 一起放进来。
 
-## v0.2.1 — 2026-10-18
+## v0.2.1 — 2026-09-10
 
 **针对 shell 启动与 HMR 中断的客户端加固。**
 
 - 所有请求都用手动 `AbortController` + 有界重试；HTTP 错误绝不重试。
 - 长时间的备份改成轮询 `/dsh-backup/state` 确认完成，不再依赖单次 POST，预算 30 分钟。
 
-## v0.2.0 — 2026-09-20
+## v0.2.0 — 2026-09-08
 
 **前端设置。**
 
