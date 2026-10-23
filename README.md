@@ -12,6 +12,13 @@ Settings live in dsh's **General** settings page. Custom values are recorded in 
 
 > ⚠️ Warning: don't put the backup folder inside the dsh directory itself — there's no guardrail for that.
 
+## Awkward files
+
+- A file another program holds open — a plugin's live SQLite database, for example — is copied first and then archived, so it still lands in the backup. That copy is taken while the owner keeps running, so a database captured this way may need its own recovery.
+- A file that disappears between listing and archiving is skipped and reported instead of failing the whole run; the same goes for a file that is genuinely unreadable.
+- Non-ASCII file names are archived correctly.
+- The result reports `liveCopies` (copied while held open), `skipped` (with a reason each) and `unstable` (changed while being read).
+
 ## Install
 
 Extract the release archive to any folder, then run:
